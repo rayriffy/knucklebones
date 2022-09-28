@@ -46,7 +46,7 @@
 
 <section class="flex space-x-4 items-start justify-center relative {extendedClass}">
   <div class="absolute left-0 bottom-0 space-y-4">
-    <h1 class="font-bold text-xl italic">Player {player.toUpperCase()}</h1>
+    <h1 class="font-bold text-xl italic">Player {player.toUpperCase()} <span class="text-gray-600 text-base">(Rank: {(score.a - score.b) * (player === 'b' ? -1 : 1) < 0 ? '2nd' : '1st'})</span></h1>
     <!-- Stand by dice -->
     <section
       class="border-[8px] rounded-md h-32 w-56 relative flex justify-end items-end {playerStandByClass}"
