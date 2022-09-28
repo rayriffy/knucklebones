@@ -3,6 +3,6 @@
 </script>
 
 <main class="h-full p-8 flex flex-col justify-between">
-  <Player class="rotate-180" />
-  <Player />
+  <Player class="rotate-180" player="b" />
+  <Player player="a" />
 </main>

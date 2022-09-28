@@ -9,7 +9,7 @@
   import type { DiceFace } from '../../../core/@types/DiceFace'
 
   const diceFace = tweened<DiceFace>(rollTheDice(), {
-    duration: 400,
+    duration: 300,
     interpolate: (a, b) => t => rollTheDice(),
   })
 
@@ -25,14 +25,18 @@
   $: serializedFace = Math.floor($diceFace) as DiceFace
 
   let extendedClass: string = ""
-  export { extendedClass as class }
+  let player: 'a' | 'b'
+  export { extendedClass as class, player }
+
+  let playerStandByClass = player === 'a' ? 'bg-yellow-700 border-yellow-500' : 'bg-blue-800 border-blue-500'
 </script>
 
 <section class="flex space-x-4 items-start justify-center relative {extendedClass}">
   <div class="absolute left-0 bottom-0 space-y-4">
+    <button on:click={onRoll}>Toggle</button>
     <!-- Stand by dice -->
     <section
-      class="bg-yellow-700 border-[8px] border-yellow-500 rounded-md h-32 w-56 relative flex justify-end items-end"
+      class="border-[8px] rounded-md h-32 w-56 relative flex justify-end items-end {playerStandByClass}"
     >
       {#if isCreateDice}
         <div
@@ -41,6 +45,7 @@
             x: -100,
             y: -64,
             easing: cubicInOut,
+            duration: 400
           }}
         >
           <Dice face={serializedFace} />
