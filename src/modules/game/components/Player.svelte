@@ -49,8 +49,8 @@
 
 <section class="flex space-x-4 items-start justify-center relative {extendedClass}">
   {#if isHelpOpen}
-    <div class="z-50 absolute w-full h-full top-0 left-0 flex items-center justify-center p-8 lg:p-0 rounded-xl overflow-hidden" in:scale out:scale>
-      <div class="bg-white w-2/5  mx-auto rounded-lg shadow-2xl z-50">
+    <div class="z-50 absolute w-full h-full top-0 left-0 flex items-center justify-center p-8 lg:p-0" in:scale out:scale>
+      <div class="bg-white w-2/3  mx-auto shadow-2xl z-50 rounded-xl overflow-hidden">
         <div class="bg-gray-100 py-5 px-8 text-2xl font-extrabold text-gray-900 flex justify-between">
           <h1>How to play</h1>
           <button on:click={() => isHelpOpen = false}>
