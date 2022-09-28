@@ -88,10 +88,10 @@
       {#each new Array(3).fill(0) as _, first (first)}
         {#each new Array(3).fill(0) as __, last (last)}
           <div
-            class="w-full bg-white aspect-square flex justify-center items-center"
+            class="w-full bg-white aspect-square flex justify-center items-center relative"
             style="grid-area: {String.fromCharCode(97 + 3 * first + last)};"
           >
-            <!-- <span>{first + 1} - {last + 1}</span> -->
+            <span class="absolute font-mono left-0 top-0 text-xs font-semibold text-red-600">{first + 1} - {last + 1}</span>
             <Dice face={serializedFace} />
           </div>
         {/each}
