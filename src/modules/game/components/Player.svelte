@@ -30,7 +30,7 @@
   }
 
   // define state
-  let isHelpOpen = true
+  let isHelpOpen = false
 
 
   const diceFace = tweened<DiceFace>(rollTheDice(), {
