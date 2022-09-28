@@ -32,7 +32,7 @@
   <div class="absolute left-0 bottom-0 space-y-4">
     <!-- Stand by dice -->
     <section
-      class="bg-yellow-700 border-4 border-yellow-500 rounded-md h-32 w-56 relative flex justify-end items-end"
+      class="bg-yellow-700 border-[8px] border-yellow-500 rounded-md h-32 w-56 relative flex justify-end items-end"
     >
       {#if isCreateDice}
         <div
@@ -63,7 +63,7 @@
       </table>
     </section>
   </div>
-  <div class="w-96 max-w-sm space-y-3">
+  <div class="w-96 max-w-sm space-y-3 mb-4">
     <div class="grid grid-cols-3 gap-4 justify-center text-center text-xl">
       <h2 class="font-medium text-gray-400 rotate-180">
         11

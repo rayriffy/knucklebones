@@ -28,7 +28,7 @@
 </script>
 
 <div
-  class="w-16 aspect-square border-[6px] rounded-lg grid grid-cols-3 justify-center items-center p-1 {coloredClass}"
+  class="w-16 h-16 border-[6px] rounded-lg grid grid-cols-3 justify-center items-center p-1 {coloredClass}"
   out:scale
 >
   {#each rederedDots as dot}
