@@ -69,8 +69,12 @@
   />
   <div class="flex justify-between">
     <div class="flex space-x-4">
-      <p>Turn {gameSystem.turn}</p>
-      <p>Current player: {gameSystem.currentActor}</p>
+      <p class="font-bold">Turn {gameSystem.turn}</p>
+      <p>Current player: {gameSystem.currentActor.toUpperCase()}</p>
+    </div>
+    <div class="flex space-x-4 rotate-180">
+      <p class="font-bold">Turn {gameSystem.turn}</p>
+      <p>Current player: {gameSystem.currentActor.toUpperCase()}</p>
     </div>
   </div>
   <Player
