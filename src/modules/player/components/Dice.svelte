@@ -1,6 +1,5 @@
 <script lang="ts">
   import { scale } from 'svelte/transition'
-  import { quintOut } from 'svelte/easing'
 
   import type { DiceFace } from '../../../core/@types/DiceFace'
 
@@ -24,6 +23,8 @@
       ? 'bg-white border-t-gray-300 border-r-gray-400 border-l-gray-500 border-b-gray-600'
       : diceMultiplier === 2
       ? 'bg-amber-300 border-t-amber-200 border-r-amber-400 border-l-amber-500 border-b-amber-600'
+      : diceMultiplier === -1
+      ? 'bg-rose-300 border-t-rose-200 border-r-rose-400 border-l-rose-500 border-b-rose-600'
       : 'bg-cyan-300 border-t-cyan-200 border-r-cyan-400 border-l-cyan-500 border-b-cyan-600'
 </script>
 
