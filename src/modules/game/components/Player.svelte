@@ -18,13 +18,15 @@
   let player: 'a' | 'b'
   let currentActor: string
   let boardState: BoardState
+  let score: { a: number, b: number }
   let onPlaceBlock: (player: string, dice: DiceFace, column: number) => void
   export {
     extendedClass as class,
     player,
     boardState,
     currentActor,
-    onPlaceBlock
+    onPlaceBlock,
+    score
   }
 
 
@@ -70,11 +72,11 @@
       <table class="table-auto text-sm">
         <tr>
           <td>You:</td>
-          <td class="pl-3 font-medium">88</td>
+          <td class="pl-3 font-medium">{score[player]}</td>
         </tr>
         <tr>
           <td>Opponent:</td>
-          <td class="pl-3 font-medium">88</td>
+          <td class="pl-3 font-medium">{player === 'a' ? score['b'] : score['a']}</td>
         </tr>
       </table>
     </section>

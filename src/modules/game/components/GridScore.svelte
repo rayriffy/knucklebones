@@ -4,7 +4,7 @@
   export let scoreColumn3: number
 </script>
 
-<div class="grid grid-cols-3 gap-4 justify-center text-center text-xl">
+<div class="grid grid-cols-3 gap-4 justify-center text-center text-2xl">
   <h2 class="font-medium text-gray-400 rotate-180">
     {scoreColumn1}
   </h2>

@@ -1,6 +1,8 @@
 <script lang="ts">
   import Player from './modules/game/components/Player.svelte'
 
+  import { getPlayerScore } from './modules/game/services/getPlayerScore'
+
   import type { GameSystem } from './modules/game/@types/GameSystem'
   import type { DiceFace } from './core/@types/DiceFace'
 
@@ -49,7 +51,8 @@
     }
   }
 
-  $: console.log(gameSystem.boardState)
+  $: playerAScore = getPlayerScore(gameSystem.boardState['a'])
+  $: playerBScore = getPlayerScore(gameSystem.boardState['b'])
 </script>
 
 <main class="h-full p-8 flex flex-col justify-between">
@@ -58,6 +61,10 @@
     currentActor={gameSystem.currentActor}
     boardState={gameSystem.boardState['b']}
     onPlaceBlock={onPlaceBlock}
+    score={{
+      a: playerAScore,
+      b: playerBScore
+    }}
     class="rotate-180"
   />
   <div class="flex justify-between">
@@ -71,5 +78,9 @@
     currentActor={gameSystem.currentActor}
     boardState={gameSystem.boardState['a']}
     onPlaceBlock={onPlaceBlock}
+    score={{
+      a: playerAScore,
+      b: playerBScore
+    }}
   />
 </main>
