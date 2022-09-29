@@ -5,7 +5,6 @@
 
   import type { GameSystem } from './modules/game/@types/GameSystem'
   import type { DiceFace } from './core/@types/DiceFace'
-  import type { BoardState } from './modules/game/@types/BoardState'
 
   let gameSystem: GameSystem = {
     turn: 1,
@@ -87,6 +86,7 @@
       a: playerAScore,
       b: playerBScore,
     }}
+    isGameEnded={gameSystem.isEnded}
     class="rotate-180"
   />
   <div class="flex justify-between">
@@ -122,5 +122,6 @@
       a: playerAScore,
       b: playerBScore,
     }}
+    isGameEnded={gameSystem.isEnded}
   />
 </main>

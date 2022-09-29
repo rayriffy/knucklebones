@@ -15,18 +15,14 @@
 
   // define props
   let extendedClass: string = ''
-  let player: 'a' | 'b'
-  let currentActor: string
-  let boardState: BoardState
-  let score: { a: number; b: number }
-  let onPlaceBlock: (player: string, dice: DiceFace, column: number) => void
+  export let player: 'a' | 'b'
+  export let currentActor: string
+  export let boardState: BoardState
+  export let score: { a: number; b: number }
+  export let isGameEnded: boolean
+  export let onPlaceBlock: (player: string, dice: DiceFace, column: number) => void
   export {
     extendedClass as class,
-    player,
-    boardState,
-    currentActor,
-    onPlaceBlock,
-    score,
   }
 
   // define state
@@ -187,21 +183,21 @@
       <BoardRow
         column={1}
         states={boardState.column1}
-        disabled={currentActor !== player}
+        disabled={currentActor !== player || isGameEnded}
         onClick={column => onPlaceBlock(player, $diceFace, column)}
       />
       <!-- Column 2 -->
       <BoardRow
         column={2}
         states={boardState.column2}
-        disabled={currentActor !== player}
+        disabled={currentActor !== player || isGameEnded}
         onClick={column => onPlaceBlock(player, $diceFace, column)}
       />
       <!-- Column 3 -->
       <BoardRow
         column={3}
         states={boardState.column3}
-        disabled={currentActor !== player}
+        disabled={currentActor !== player || isGameEnded}
         onClick={column => onPlaceBlock(player, $diceFace, column)}
       />
     </div>
