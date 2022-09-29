@@ -1,17 +1,16 @@
 <script lang="ts">
   import { tweened } from 'svelte/motion'
-  import { cubicInOut } from 'svelte/easing'
-  import { fly, scale, fade } from 'svelte/transition'
 
   import BoardRow from './BoardRow.svelte'
-  import Dice from '../../player/components/Dice.svelte'
+  import GridScore from './GridScore.svelte'
+  import HowToPlay from './HowToPlay.svelte'
+  import StandbyDeck from './StandbyDeck.svelte'
 
   import { rollTheDice } from '../../game/services/rollTheDice'
   import { getRowScore } from '../services/getRowScore'
 
   import type { DiceFace } from '../../../core/@types/DiceFace'
   import type { BoardState } from '../../../modules/game/@types/BoardState'
-  import GridScore from './GridScore.svelte'
 
   // define props
   let extendedClass: string = ''
@@ -20,10 +19,12 @@
   export let boardState: BoardState
   export let score: { a: number; b: number }
   export let isGameEnded: boolean
-  export let onPlaceBlock: (player: string, dice: DiceFace, column: number) => void
-  export {
-    extendedClass as class,
-  }
+  export let onPlaceBlock: (
+    player: string,
+    dice: DiceFace,
+    column: number
+  ) => void
+  export { extendedClass as class }
 
   // define state
   let isHelpOpen = false
@@ -38,76 +39,11 @@
     if (currentActor === player) $diceFace = rollTheDice()
   }
 
-  let playerStandByClass =
-    player === 'a'
-      ? 'bg-yellow-700 border-yellow-500'
-      : 'bg-blue-800 border-blue-500'
+  $: console.log(isHelpOpen)
 </script>
 
-<section
-  class="flex space-x-4 items-start justify-center relative {extendedClass}"
->
-  {#if isHelpOpen}
-    <div
-      class="z-50 absolute w-full h-full top-0 left-0 flex items-center justify-center p-8 lg:p-0"
-      in:scale
-      out:scale
-    >
-      <div
-        class="bg-white w-2/3  mx-auto shadow-2xl z-50 rounded-xl overflow-hidden"
-      >
-        <div
-          class="bg-gray-100 py-5 px-8 text-2xl font-extrabold text-gray-900 flex justify-between"
-        >
-          <h1>How to play</h1>
-          <button on:click={() => (isHelpOpen = false)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-8 h-8"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="grid grid-cols-2 p-6 gap-6">
-          <div>
-            <div class="w-48 relative mx-auto">
-              <Dice face={6} diceMultiplier={2} />
-              <div class="flex justify-end">
-                <Dice face={6} diceMultiplier={2} />
-              </div>
-            </div>
-            <p class="mt-4 font-medium text-center">
-              When dice of the same number are placed in the same column,
-              multiply their value.
-            </p>
-          </div>
-          <div>
-            <div class="w-48 flex flex-col items-center relative mx-auto">
-              <Dice face={6} diceMultiplier={-1} />
-              <div class="bg-gray-400 h-0.5 w-20 rounded-full my-2" />
-              <Dice face={6} diceMultiplier={-1} />
-            </div>
-            <p class="mt-4 font-medium text-center">
-              Destroy your opponents dice by matching yours to theirs in the
-              same column.
-            </p>
-          </div>
-          <div class="col-span-2 mt-2 italic font-medium text-center">
-            Score is calculated by adding all your dice together
-          </div>
-        </div>
-      </div>
-    </div>
-  {/if}
+<section class="flex items-start justify-center relative {extendedClass}">
+  <HowToPlay bind:isOpen={isHelpOpen} />
 
   <div class="absolute left-0 bottom-0 space-y-4">
     <button
@@ -137,23 +73,7 @@
       >
     </h1>
     <!-- Stand by dice -->
-    <section
-      class="border-[8px] rounded-md h-32 w-56 relative flex justify-end items-end {playerStandByClass}"
-    >
-      {#if currentActor === player}
-        <div
-          class="mr-4 mb-1"
-          in:fly={{
-            x: -100,
-            y: -60,
-            easing: cubicInOut,
-            duration: 400,
-          }}
-        >
-          <Dice face={$diceFace} />
-        </div>
-      {/if}
-    </section>
+    <StandbyDeck {player} {currentActor} diceFace={$diceFace} />
 
     <!-- Score board -->
     <section>
