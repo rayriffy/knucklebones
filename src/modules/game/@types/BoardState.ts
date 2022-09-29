@@ -1,4 +1,4 @@
-import type { DiceFace } from "../../../core/@types/DiceFace"
+import type { DiceFace } from '../../../core/@types/DiceFace'
 
 export interface BoardState {
   column1: (DiceFace | null)[]

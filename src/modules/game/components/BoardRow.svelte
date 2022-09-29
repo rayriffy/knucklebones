@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Dice from "../../../modules/player/components/Dice.svelte"
-  import type { DiceFace } from "../../../core/@types/DiceFace"
+  import Dice from '../../../modules/player/components/Dice.svelte'
+  import type { DiceFace } from '../../../core/@types/DiceFace'
 
   export let column: number
   export let states: (DiceFace | null)[]
@@ -17,7 +17,9 @@
 
 {#each states as item, index (`column${column}-row${index}-val${item ?? 0}mul${countedDices[item] ?? 1}`)}
   <button
-    class="w-full bg-white aspect-square flex justify-center items-center" disabled={disabled} on:click={() => onClick(column)}
+    class="w-full bg-white aspect-square flex justify-center items-center"
+    {disabled}
+    on:click={() => onClick(column)}
     style="grid-area: {String.fromCharCode(97 + 3 * (column - 1) + index)};"
   >
     {#if item !== null}
@@ -25,4 +27,3 @@
     {/if}
   </button>
 {/each}
-

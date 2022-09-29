@@ -34,7 +34,8 @@
   let onPlaceBlock = (player: string, dice: DiceFace, column: number) => {
     console.log(player, column, dice)
 
-    let playerBoardColumn: (DiceFace | null)[] = gameSystem.boardState[player][`column${column}`]
+    let playerBoardColumn: (DiceFace | null)[] =
+      gameSystem.boardState[player][`column${column}`]
     // check if user is able to place block in that column
     if (playerBoardColumn.includes(null)) {
       // place in available spot
@@ -45,22 +46,30 @@
       let opponentPlayer = player === 'a' ? 'b' : 'a'
       // opponent column is mirrored on player perspective
       let targetOpponentColumn = column === 1 ? 3 : column === 3 ? 1 : 2
-      let opponentBoardColumn: (DiceFace | null)[] = gameSystem.boardState[opponentPlayer][`column${targetOpponentColumn}`]
+      let opponentBoardColumn: (DiceFace | null)[] =
+        gameSystem.boardState[opponentPlayer][`column${targetOpponentColumn}`]
 
-      let filteredColumn = opponentBoardColumn.filter(o => o !== null && o !== dice)
+      let filteredColumn = opponentBoardColumn.filter(
+        o => o !== null && o !== dice
+      )
 
-      filteredColumn = filteredColumn.concat(new Array(3 - filteredColumn.length).fill(null))
+      filteredColumn = filteredColumn.concat(
+        new Array(3 - filteredColumn.length).fill(null)
+      )
 
-      gameSystem.boardState[opponentPlayer][`column${targetOpponentColumn}`] = filteredColumn
+      gameSystem.boardState[opponentPlayer][`column${targetOpponentColumn}`] =
+        filteredColumn
 
       // to next turn, and send control to opponent
       gameSystem.turn = gameSystem.turn + 1
       gameSystem.currentActor = opponentPlayer
 
       // determine if the game ended. game will ended when current actor have to move left
-      gameSystem.isEnded = Object.entries(gameSystem.boardState[player]).every(([column, boardState]) => {
-        return !(boardState as (DiceFace | null)[]).includes(null)
-      })
+      gameSystem.isEnded = Object.entries(gameSystem.boardState[player]).every(
+        ([column, boardState]) => {
+          return !(boardState as (DiceFace | null)[]).includes(null)
+        }
+      )
     }
   }
 
@@ -73,10 +82,10 @@
     player="b"
     currentActor={gameSystem.currentActor}
     boardState={gameSystem.boardState['b']}
-    onPlaceBlock={onPlaceBlock}
+    {onPlaceBlock}
     score={{
       a: playerAScore,
-      b: playerBScore
+      b: playerBScore,
     }}
     class="rotate-180"
   />
@@ -85,7 +94,9 @@
       <p class="font-bold">Turn {gameSystem.turn}</p>
       <p>Current player: {gameSystem.currentActor.toUpperCase()}</p>
       {#if gameSystem.isEnded}
-        <div class="bg-red-500 text-white rounded-md shadow uppercase text-sm px-2 py-0.5 font-bold">
+        <div
+          class="bg-red-500 text-white rounded-md shadow uppercase text-sm px-2 py-0.5 font-bold"
+        >
           <p>Game ended</p>
         </div>
       {/if}
@@ -94,7 +105,9 @@
       <p class="font-bold">Turn {gameSystem.turn}</p>
       <p>Current player: {gameSystem.currentActor.toUpperCase()}</p>
       {#if gameSystem.isEnded}
-        <div class="bg-red-500 text-white rounded-md shadow uppercase text-sm px-2 py-0.5 font-bold">
+        <div
+          class="bg-red-500 text-white rounded-md shadow uppercase text-sm px-2 py-0.5 font-bold"
+        >
           <p>Game ended</p>
         </div>
       {/if}
@@ -104,10 +117,10 @@
     player="a"
     currentActor={gameSystem.currentActor}
     boardState={gameSystem.boardState['a']}
-    onPlaceBlock={onPlaceBlock}
+    {onPlaceBlock}
     score={{
       a: playerAScore,
-      b: playerBScore
+      b: playerBScore,
     }}
   />
 </main>

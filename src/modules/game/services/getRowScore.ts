@@ -11,7 +11,7 @@ export const getRowScore = (states: (DiceFace | null)[]) => {
   // calculate scores
   const totalScore = Object.entries(countedDices).reduce((acc, [key, val]) => {
     // key is DiceFace, val is counted abount of dice in that row
-    return acc + (Number(key) * Math.pow(Number(val), 2))
+    return acc + Number(key) * Math.pow(Number(val), 2)
   }, 0)
 
   return totalScore
