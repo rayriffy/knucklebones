@@ -31,8 +31,6 @@
    * @param column which column to be added
    */
   let onPlaceBlock = (player: string, dice: DiceFace, column: number) => {
-    console.log(player, column, dice)
-
     let playerBoardColumn: (DiceFace | null)[] =
       gameSystem.boardState[player][`column${column}`]
     // check if user is able to place block in that column

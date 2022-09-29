@@ -38,8 +38,6 @@
   $: {
     if (currentActor === player) $diceFace = rollTheDice()
   }
-
-  $: console.log(isHelpOpen)
 </script>
 
 <section class="flex items-start justify-center relative {extendedClass}">
